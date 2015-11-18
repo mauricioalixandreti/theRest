@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<context:annotation-config />
+	<context:component-scan base-package="br.com.maxinfoti.webapp" />
+<!-- 	<mvc:annotation-driven/> -->
+<!-- 	<tx:annotation-driven />	 -->
+	
+	<!-- Permite utilizar a barra ("/") como conteudo mapeado pelo Spring MVC. -->
+<!-- 	<mvc:default-servlet-handler /> -->
+	
+	<!-- Ativa o uso de anotacoes complementares ao contexto do Spring. -->
+	<context:annotation-config />
+
+<!-- 	<bean id="entityManagerFactory" -->
+<!-- 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
+<!-- 		<property name="jpaProperties"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" /> -->
+<!-- 				<entry key="hibernate.show_sql" value="true" /> -->
+<!-- 				<entry key="hibernate.format_sql" value="true" /> -->
+<!-- 				<entry key="hibernate.max_fetch_depth" value="1" /> -->
+<!-- 				<entry key="hibernate.connection.isolation" value="2" /> -->
+<!-- 				<entry key="hibernate.order_updates" value="true" /> -->
+<!-- 				<entry key="hibernate.query.jpaql_strict_compliance" value="true" /> -->
+<!-- 				<entry key="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" /> -->
+<!-- 				<entry key="hibernate.hbm2ddl.auto" value="update" /> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+
+<!-- 		<property name="persistenceUnitName" value="SuaReceitaDigitalPU" /> -->
+<!-- 		<property name="persistenceProvider" ref="provider" /> -->
+<!-- 		<property name="packagesToScan" value="br.com.pactotecnologia" /> -->
+<!-- 		<property name="mappingResources"> -->
+<!-- 			<list> -->
+<!-- 				<value>srd-named-query.xml</value> -->
+<!-- 				<value>core-named-query.xml</value> -->
+<!-- 				<value>br/com/pactotecnologia/sin/seguranca/Direito.xml</value> -->
+<!-- 				<value>br/com/pactotecnologia/sin/seguranca/Papel.xml</value> -->
+<!-- 				<value>br/com/pactotecnologia/sin/seguranca/UsuarioDireito.xml</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+<!-- 			<property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+<!-- 			<property name="url" value="jdbc:mysql://localhost:3306/clubemultifar" /> -->
+<!-- 			<property name="username" value="root" /> -->
+<!-- 			<property name="password" value="root" /> -->
+<!-- 			<property name="initialSize" value="3" /> -->
+<!-- 			<property name="maxActive" value="30" /> -->
+<!-- 			<property name="maxWait" value="3600" /> -->
+<!-- 			<property name="maxIdle" value="3" /> -->
+<!-- 			<property name="validationQuery" value="select 1" /> -->
+<!-- 		</bean> -->
+
+<!-- 	<bean id="provider" class="org.hibernate.ejb.HibernatePersistence" /> -->
+
+<!-- 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
+<!-- 		<property name="entityManagerFactory" ref="entityManagerFactory" /> -->
+<!-- 	</bean> -->
+
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- viewResolver para tecnolgia jsp -->
+<!-- 	<bean id="viewResolver" -->
+<!-- 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+<!-- 		<property name="viewClass" -->
+<!-- 			value="org.springframework.web.servlet.view.JstlView" /> -->
+<!-- 		<property name="prefix" value="/WEB-INF/view/" /> -->
+<!-- 		<property name="suffix" value=".jsp" /> -->
+<!-- 	</bean> -->
+	
+	<!-- viewResolver para tecnolgia difernte tiops de arquivo como .html, jsp, jsf no mesmo projeto -->
+<!-- 	<bean id="viewResolver" -->
+<!-- 		class="org.springframework.web.servlet.view.ResourceBundleViewResolver"> -->
+<!-- 		<property name="basename" value="views" /> -->
+<!-- 		<property name="defaultParentView" value="parentView" /> -->
+<!-- 	</bean> -->
+		
+		<!-- Bean para ativar o tiles com Spring MVC. -->
+<!-- 	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver"> -->
+<!-- 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/> -->
+<!-- 	</bean> -->
+	
+	<bean id="viewResolver"
+	    class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer" id="tilesConfigurer">
+	<property name="definitions">
+	    <list>
+			<value>/WEB-INF/layouts/tiles-definitions.xml</value>
+	    </list>
+	</property>
+	</bean>
+
+
+
+
+</beans>
